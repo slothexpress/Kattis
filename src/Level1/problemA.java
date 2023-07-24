@@ -1,47 +1,43 @@
 package Level1;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class problemA {
     public static void main(String[] args) {
-        String inputFileName = "C:/Users/hello/Documents/repos/FileReaderWriter/src/Level1/input.txt";
-        String outputFileName = "C:/Users/hello/Documents/repos/FileReaderWriter/src/Level1/output.txt";
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(inputFileName));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
+        System.out.print("Player 1 enter Hangman word: ");
+        String line1 = scanner.nextLine();
 
-            String line1 = reader.readLine();
-            String line2 = reader.readLine();
-            char[] characters = line2.toCharArray();
-            reader.close();
+        System.out.print("Player 2 enter permutation: ");
+        String line2 = scanner.nextLine();
 
+        // Close the scanner after taking input
+        scanner.close();
 
-            String result = applyHangmanStrategy(line1, characters);
-            System.out.println(result);
+        // Convert the second line to a char array
+        char[] characters = line2.toCharArray();
 
-            // Write the processed data to the output file
-            writer.write(result);
-            writer.close();
-
-        } catch (IOException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
+        String result = applyHangmanStrategy(line1, characters);
+        System.out.print(result);
     }
 
-    private static String applyHangmanStrategy(String word, char[] characters) {
+    private static String applyHangmanStrategy(String word, char[] letters) {
         int numberOfHangmanLetters = word.length();
         int numberOfCorrectLetters = 0;
+
         int numberOfFailsLeft = 10;
         int numberOfFails = 0;
-        int character = 0;
+        int letter = 0;
 
         while(numberOfFails < numberOfFailsLeft) {
-            char guessingLetter = characters[character];
-            character++;
+            char guessingLetter = letters[letter];
+            letter++;
 
             int occurrences = (int) word.chars()
-                    .filter(letter -> letter == guessingLetter)
+                    .filter(l -> l == guessingLetter)
                     .count();
             if(occurrences == 0) {
                 numberOfFails++;
@@ -54,6 +50,4 @@ public class problemA {
         }
         return "LOSE";
     }
-
-
 }

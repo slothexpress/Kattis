@@ -20,6 +20,13 @@ public class problemC {
     }
 
     private static int readLengthForGameBoard(Scanner scanner) {
+        int[][] board = readGameBoardInput(scanner);
+        int[] suggestedMoves = findBestMoves(board);
+
+        // TODO output/print suggestedMoves
+    }
+    
+    private static void readGameBoardInput(Scanner scanner) {
         // Get the size of the game board (number of tiles)
         int n = Integer.parseInt(scanner.nextLine());
         return n;

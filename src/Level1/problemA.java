@@ -5,22 +5,16 @@ import java.util.Scanner;
 
 public class problemA {
     public static void main(String[] args) {
-        // Create a Scanner object to read user input
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Player 1 enter Hangman word: ");
-        String line1 = scanner.nextLine();
-
-        System.out.print("Player 2 enter permutation: ");
-        String line2 = scanner.nextLine();
-
-        // Close the scanner after taking input
+        String hangmanWord = scanner.nextLine();
+        String permutation = scanner.nextLine();
         scanner.close();
 
         // Convert the second line to a char array
-        char[] characters = line2.toCharArray();
+        char[] characters = permutation.toCharArray();
 
-        String result = applyHangmanStrategy(line1, characters);
+        String result = applyHangmanStrategy(hangmanWord, characters);
         System.out.print(result);
     }
 

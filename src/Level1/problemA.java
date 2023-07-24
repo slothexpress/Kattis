@@ -31,6 +31,7 @@ public class problemA {
 
     private static String applyHangmanStrategy(String word, char[] characters) {
         int numberOfHangmanLetters = word.length();
+        int numberOfCorrectLetters = 0;
         int numberOfFailsLeft = 10;
         int numberOfFails = 0;
         int character = 0;
@@ -46,8 +47,8 @@ public class problemA {
                 numberOfFails++;
             }
 
-            numberOfHangmanLetters = numberOfHangmanLetters - occurrences;
-            if(numberOfHangmanLetters == 0) {
+            numberOfCorrectLetters = numberOfCorrectLetters + occurrences;
+            if(numberOfCorrectLetters == numberOfHangmanLetters) {
                 return "WIN";
             }
         }
